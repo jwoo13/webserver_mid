@@ -33,7 +33,6 @@ public class FeedDAO {
 
     public List<FeedVO> selectAll()throws Exception  {
 
-        String sql = "select * from feed";
 
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -56,7 +55,6 @@ public class FeedDAO {
     }
 
     public void insert(FeedVO vo) throws Exception {
-        String sql = "insert into feed (content, modifiedDate) values (?, ?)";
 
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -68,7 +66,6 @@ public class FeedDAO {
     }
 
     public FeedVO selectOne(Long feedId) throws Exception {
-        String sql = "select * from feed where feedId = ?";
 
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -88,7 +85,6 @@ public class FeedDAO {
     }
 
     public void deleteOne(Long feedId) throws Exception {
-        String sql = "delete from feed where feedId = ?";
 
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -99,7 +95,6 @@ public class FeedDAO {
     }
 
     public void updateOne(FeedVO feedVO) throws Exception {
-        String sql = "update feed set content = ?, modifiedDate = ? where feedId = ?";
 
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
