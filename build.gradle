@@ -1,0 +1,74 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'jungwoo'
+version '1.0-SNAPSHOT'
+
+repositories {
+    // Adding Maven Central repository to resolve dependencies
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.10.0'
+}
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    // Jakarta EE API (includes JPA, CDI, Servlet, Bean Validation, etc.)
+    implementation 'jakarta.platform:jakarta.jakartaee-api:10.0.0'
+
+        implementation 'mysql:mysql-connector-java:8.0.33' // 최신 버전을 확인해 사용하세요
+
+    implementation 'com.zaxxer:HikariCP:5.0.1'
+
+    // ModelMapper for object mapping
+    implementation 'org.modelmapper:modelmapper:3.1.0'
+
+    // JSON Processing (similar to Jackson in Spring Boot)
+    implementation 'jakarta.json:jakarta.json-api:2.0.1'
+    implementation 'org.glassfish:jakarta.json:2.0.1'
+
+    // Servlet API for HttpServlet, HttpServletResponse, etc.
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    // Logging (using Log4j2)
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
+
+    // Lombok for reducing boilerplate code
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    // Jsoup (for HTML parsing, similar to original)
+    implementation 'org.jsoup:jsoup:1.15.3'
+
+    // JSON Simple (if needed for lightweight JSON parsing)
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+
+    // JWT (for authentication purposes)
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
+    // AWS CloudWatch Logs + Logback (only use logback if log4j2 is removed)
+    // Note: Logback is typically not used with Log4j2
+    implementation 'ca.pjer:logback-awslogs-appender:1.6.0'
+
+    // JUnit for testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0'
+}
+
+test {
+    useJUnitPlatform()
+}
